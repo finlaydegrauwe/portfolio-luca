@@ -1,38 +1,90 @@
-.App {
-  text-align: center;
+.menu {
+  grid-area: menu;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body{
+  margin: 5px!important;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.main {
+  grid-area: main;
   display: flex;
+  flex-wrap: wrap;
+  grid-gap: 50px;
+  grid-template-columns: 1fr 1fr;
+}
+
+.head {
+  grid-area: head;
+  display: flex;
+  justify-content: space-between;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  text-align: right;
+  align-items: bottom;
 }
 
-.App-link {
-  color: #61dafb;
+.foot {
+  grid-area: foot;
+  text-align: center;
+  width: 100%;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
+.projecten {
+  padding: 10px 10px 10px 14px;
+  width: 100%;
+  background: none;
+  border: none;
+  position: relative;
+  cursor: pointer;
+}
+
+.projecten:after,
+.projecten:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  border: 2px solid #000;
+  -webkit-transition: -webkit-transform 0.2s;
+  transition: -webkit-transform 0.2s;
+  transition: transform 0.2s;
+  transition: transform 0.2s, -webkit-transform 0.2s;
+}
+
+.projecten:after {
+  -webkit-transform: translate(6px, 6px);
+  transform: translate(6px, 6px);
+}
+
+.projecten:hover:after {
+  -webkit-transform: translate(0);
+  transform: translate(0);
+}
+
+.wrapper {
+  display: grid;
+  width: 100%;
+  grid-gap: 20px;
+  grid-template-areas:
+    "menu head"
+    "main main"
+    "foot foot";
+  grid-template-rows: auto auto;
+}
+
+#navcontainer{
+  width: 30vw;
+  min-width: 300px;
+}
+
+canvas{
+}
+
+@media (min-width: 768px) {
+  .wrapper {
+    width: 70%;
+    margin: auto;
   }
 }

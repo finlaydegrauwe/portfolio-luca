@@ -1,23 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import "./App.css";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import Head from "./Head";
+import Project from "./Project";
+import Nav from "./Nav";
+import Foot from "./Foot";
 
 function App() {
+  const [projects, setProjects] = useState([
+    { name: "Project 1", text: "Beschrijving" },
+    { name: "Project 2", text: "Beschrijving" },
+    { name: "Project 3", text: "Beschrijving" },
+    { name: "Project 4", text: "Beschrijving" },
+  ]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="wrapper">
+      <Nav className="menu" />
+      <Head className="head" />
+      <div className="main">{projects.map((project, index) => (
+        <Project key={index} className="mx-4" name={project.name} text={project.text} />
+      ))}</div>
+      <Foot className="foot"/>
     </div>
   );
 }
