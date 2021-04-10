@@ -1,38 +1,67 @@
-import React from "react";
-
-function Navold() {
-  return <div className="d-flex justify-content-between text-center">
-      <div><div className="bg-warning rounded-circle" style={{ width: "100px", height: "100px" }}></div><h4>Menu</h4></div>
-      <div><div className="ml-30 py-auto" style={{ width: "0",
-  height: "0",
-  'borderLeft': "60px solid transparent",
-  'borderRight': "60px solid transparent",
-  'borderBottom': "80px solid #007bff" }}></div><h4>Home</h4></div>
-  <div><div className="bg-danger" style={{ width: "100px", height: "100px" }}></div><h4>Contact</h4></div>
-  </div>;
-}
-
-function draw(ctx, location) {
-  ctx.rect(0,0,50,50);
-  ctx.fillStyle = 'deepskyblue';
-}
-
+import React, { useState, useEffect, useRef } from "react";
 
 function Nav() {
-  const canvasRef = React.useRef(null)
+  const [shuffleState, setShuffleState] = useState(0);
+  const [heightSVG, setHeightSVG] = useState(0);
+  const [widthSVG, setWidthSVG] = useState(0);
+  const refSVG = useRef(null);
+  let circleLoc = "translate(20,100),scale(1.7)";
+  let triangleLoc = "translate(20,100),scale(1.7)";
+  let squareLoc = "translate(20,100),scale(1.7)";
+  let scale = 1.9;
+  const top = heightSVG / 10;
+  let botl = heightSVG * 0.5;
+  let botr = heightSVG * 0.5;
+  const left = widthSVG / 10;
+  const mid = widthSVG / 2.4;
+  let right = widthSVG * 0.7
+  if (widthSVG < 240) {
+    botl = heightSVG * 0.4;
+    botr = heightSVG * 0.65;
+    right = widthSVG * 0.55;
+  }
+  if (widthSVG > 400) {
+    scale = 2.2;
+  }
+
+  useEffect(() => {
+    setHeightSVG(refSVG.current.clientHeight);
+    setWidthSVG(refSVG.current.clientWidth);
+  });
+  
+  if (shuffleState%3 === 0) {
+    circleLoc = "translate("+left+","+botl+"),scale("+scale+"),rotate(-3)";
+    triangleLoc = "translate("+right+","+botr+"),scale("+scale+"),rotate(7)";
+    squareLoc = "translate("+mid+","+top+"),scale("+scale+"),rotate(-5)";
+    console.log("0");
+  } else if (shuffleState%3 === 1) {
+    circleLoc = "translate("+mid+","+top+"),scale("+scale+"),rotate(4)";
+    triangleLoc = "translate("+left+","+botl+"),scale("+scale+"),rotate(-3)";
+    squareLoc = "translate("+right+","+botr+"),scale("+scale+"),rotate(6)";
+    console.log("1");
+  } else if (shuffleState%3 === 2) {
+    circleLoc = "translate("+right+","+botr+"),scale("+scale+"),rotate(-2)";
+    triangleLoc = "translate("+mid+","+top+"),scale("+scale+"),rotate(3)";
+    squareLoc = "translate("+left+","+botl+"),scale("+scale+"),rotate(-3)";
+    console.log("2");
+  }
   return(
-    <div id="navcontainer">
-      <canvas
-      ref={canvasRef}
-      width="300px"
-      height="100px"
-      onClick={e => {
-        const canvas = canvasRef.current
-        const ctx = canvas.getContext('2d')
-        draw(ctx, { x: e.clientX, y: e.clientY })
-      }}
-    />
-    </div>
+    <svg ref={refSVG} fontWeight="bold">
+        <g id="cir" transform={circleLoc} onClick={() => setShuffleState(0)}>
+          <circle fill="rgba(255, 82, 82)" id="circle" cx="19" cy="19" r="19"></circle>
+          <text x="-3" y="50" fontSize="10">Projecten</text>
+        </g>
+
+        <g id="tri" transform={triangleLoc} onClick={() => setShuffleState(1)}>
+          <polygon id="triangle" fill="rgb(0, 176, 255)" points="22,0 44,36 0,36" className="triangle"></polygon>
+          <text x="3" y="49" fontSize="10">Contact</text>
+        </g>
+
+        <g id="rec" transform={squareLoc} onClick={() => setShuffleState(2)}>
+          <rect id="rectangle" fill="rgb(255, 235, 59)" width="35" height="35"></rect>
+          <text x="4" y="49" fontSize="10">Index</text>
+        </g>
+      </svg>
   )
 }
 
