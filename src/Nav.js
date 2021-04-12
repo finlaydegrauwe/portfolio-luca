@@ -5,9 +5,9 @@ function Nav() {
   const [heightSVG, setHeightSVG] = useState(0);
   const [widthSVG, setWidthSVG] = useState(0);
   const refSVG = useRef(null);
-  let circleLoc = "translate(20,100),scale(1.7)";
-  let triangleLoc = "translate(20,100),scale(1.7)";
-  let squareLoc = "translate(20,100),scale(1.7)";
+  let circleLoc = "translate(40,100),scale(1.7)";
+  let triangleLoc = "translate(200,100),scale(1.7)";
+  let squareLoc = "translate(120,100),scale(1.7)";
   let scale = 1.9;
   const top = heightSVG / 10;
   let botl = heightSVG * 0.5;
@@ -27,7 +27,7 @@ function Nav() {
   useEffect(() => {
     setHeightSVG(refSVG.current.clientHeight);
     setWidthSVG(refSVG.current.clientWidth);
-  });
+  },[]);
   
   if (shuffleState%3 === 0) {
     circleLoc = "translate("+left+","+botl+"),scale("+scale+"),rotate(-3)";

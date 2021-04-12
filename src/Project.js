@@ -16,7 +16,7 @@ function ProjectContent(props){
     </div>
     )
   }
-  if (props.highlight === "yes"){
+  if (props.highlight){
     return(
       <div style={{gridColumn: 'span 2'}} className="projectContainer">
       <Card className="projecten" style={{ border: "0px solid black"}} onClick={() => setProjectOpen(true)} >
