@@ -9,7 +9,7 @@ import firebase from "./firebase";
 function App() {
   const [projecten, setProjecten] = useState([]);
   const ref = firebase.firestore().collection("projecten");
-  
+
   function fetchProjecten() {
     ref.onSnapshot((querySnapshot) => {
       const items = [];
@@ -22,17 +22,25 @@ function App() {
 
   useEffect(() => {
     fetchProjecten();
-  }, [])
+  }, []);
+
 
   return (
     <div className="wrapper">
       <Nav className="menu" />
       <Head className="head" />
       <div className="main">
-        {projecten.map((project, index) => (
-        <Project key={project.id} className="mx-4" name={project.name} text={project.beschrijving} highlight={project.highlight} />
-      ))}</div>
-      <Foot className="foot"/>
+          {projecten.map((project) => (
+            <Project
+              key={project.name}
+              className="mx-4"
+              name={project.name}
+              text={project.beschrijving}
+              highlight={project.highlight}
+            />
+          ))}
+      </div>
+      <Foot className="foot" />
     </div>
   );
 }

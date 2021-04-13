@@ -9,7 +9,7 @@ body{
 .head {
   grid-area: head;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   flex-direction: column;
   text-align: right;
   align-items: bottom;

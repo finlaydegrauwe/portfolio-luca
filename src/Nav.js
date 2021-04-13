@@ -33,17 +33,17 @@ function Nav() {
     circleLoc = "translate("+left+","+botl+"),scale("+scale+"),rotate(-3)";
     triangleLoc = "translate("+right+","+botr+"),scale("+scale+"),rotate(7)";
     squareLoc = "translate("+mid+","+top+"),scale("+scale+"),rotate(-5)";
-    console.log("0");
+    console.log("projecten");
   } else if (shuffleState%3 === 1) {
     circleLoc = "translate("+mid+","+top+"),scale("+scale+"),rotate(4)";
     triangleLoc = "translate("+left+","+botl+"),scale("+scale+"),rotate(-3)";
     squareLoc = "translate("+right+","+botr+"),scale("+scale+"),rotate(6)";
-    console.log("1");
+    console.log("contact");
   } else if (shuffleState%3 === 2) {
     circleLoc = "translate("+right+","+botr+"),scale("+scale+"),rotate(-2)";
     triangleLoc = "translate("+mid+","+top+"),scale("+scale+"),rotate(3)";
     squareLoc = "translate("+left+","+botl+"),scale("+scale+"),rotate(-3)";
-    console.log("2");
+    console.log("over mij");
   }
   return(
     <svg ref={refSVG} fontWeight="bold">
@@ -59,7 +59,7 @@ function Nav() {
 
         <g id="rec" transform={squareLoc} onClick={() => setShuffleState(2)}>
           <rect id="rectangle" fill="rgb(255, 235, 59)" width="35" height="35"></rect>
-          <text x="4" y="49" fontSize="10">Index</text>
+          <text x="4" y="49" fontSize="10">Over mij</text>
         </g>
       </svg>
   )
